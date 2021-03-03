@@ -10,19 +10,19 @@ class BlurDataset(Dataset):
             self.blur_dir = blur_dir
             self.transform = transform
             self.sharp_images = os.listdir(sharp_dir)
+            self.blur_images = os.listdir(blur_dir)
 
     def __len__(self):
         return len(self.sharp_images)
 
     def __getitem__(self, index):
         sharp_img_path = os.path.join(self.sharp_dir, self.sharp_images[index])
-        blur_img_path = os.path.join(self.blur_dir, self.sharp_images[index].replace("_S.jpg", "_M.jpg"))
-        sharp_img = np.array(Image.open(sharp_img_path).convert("RGB"))
-        blur_img = np.array(Image.open(blur_img_path).convert("RGB"), dtype=np.float32)
+        blur_img_path = os.path.join(self.blur_dir, self.blur_images[index])
+        sharp_img = (Image.open(sharp_img_path).convert("RGB"))
+        blur_img = (Image.open(blur_img_path).convert("RGB"))
 
         if self.transform is not None:
-            augmentations = self.transform(sharp_img=sharp_img, blur_img=blur_img)
-            sharp_img = augmentations["sharp_img"]
-            blur_img = augmentations["blur_img"]
+            sharp_img = self.transform(sharp_img)
+            blur_img = self.transform(blur_img)
 
-        return sharp_img, blur_img
+        return blur_img, sharp_img

@@ -19,7 +19,6 @@ def get_loaders(
         train_blur_dir,
         batch_size,
         train_transform,
-        val_transform,
         num_workers=2,
         pin_memory=True,
 ):
@@ -47,7 +46,6 @@ def get_loaders(
 def check_accuracy(loader, model, device="cuda"):
     num_correct = 0
     num_pixels = 0
-    dice_score = 0
     model.eval()
 
     with torch.no_grad():
