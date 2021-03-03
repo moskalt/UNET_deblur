@@ -1,1 +1,5 @@
 /venv/
+/blur_data/blur_dataset_scaled/
+/blur_data/defocused_blurred/
+/blur_data/motion_blurred/
+/blur_data/sharp/
