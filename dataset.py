@@ -5,10 +5,9 @@ import numpy as np
 
 
 class BlurDataset(Dataset):
-    def __init__(self, sharp_dir, blur_dir, motion_blur_dir, transform=None):
+    def __init__(self, sharp_dir, blur_dir, transform=None):
             self.sharp_dir = sharp_dir
             self.blur_dir = blur_dir
-            self.motion_blur_dir = motion_blur_dir
             self.transform = transform
             self.sharp_images = os.listdir(sharp_dir)
 
